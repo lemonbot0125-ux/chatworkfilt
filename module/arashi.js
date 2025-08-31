@@ -55,6 +55,8 @@ const m = [
 const zzalgo =
   /[\u0300-\u036F\u1AB0-\u1AFF\u1DC0-\u1DFF\u20D0-\u20FF\uFE20-\uFE2F]/;
 
+const qt =
+  "[qt]"
 //荒らしに対して反応します
 async function arashi(body, messageId, roomId, accountId) {
   const isAdmin = await isUserAdmin(accountId, roomId);
@@ -98,7 +100,10 @@ async function arashi(body, messageId, roomId, accountId) {
     await blockMember(roomId, accountId);
     return "ok";
   }
-
+  if ((body.match(/\[qt\]/g) || []).length >= 8) {
+    await blockMember(roomId, accountId);
+    return "ok";
+  }
   if ((body.match(/\[preview/g) || []).length >= 5) {
     await blockMember(roomId, accountId);
     return "ok";
