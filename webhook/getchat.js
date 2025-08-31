@@ -17,7 +17,7 @@ async function getchat(req, res) {
     message_id: messageId,
   } = req.body.webhook_event;
   await readmessage(roomId, messageId);
-  if (accountId === 10496796) {
+  if (accountId === 10572042) {
     return res.sendStatus(200);
   }
   
